@@ -56,8 +56,6 @@ Each directory under `data/train_data/samples/` represents one training sample a
 
 The `data/train_data/objects/` directory stores the source object images. Evaluation prompts and their reference images are stored under `data/evaluate_data/evaluate_prompt/` and `data/evaluate_data/reference_images/`, respectively.
 
-Image extensions may be changed to match the files used by your dataset loader.
-
 ## Training
 
 Configure Accelerate before launching training. Multi-GPU training is recommended.
