@@ -4,7 +4,7 @@
 
 DRG-Diff is a relation-aware multi-subject image customization framework. Given multiple reference subjects and a text prompt describing their interaction, the model aims to preserve the identity of every subject while generating accurate and natural spatial or semantic relations.
 
-The framework builds on multi-subject diffusion and introduces graph-based subject modeling, joint subject-noise reasoning, and cross-attention mechanisms to improve subject consistency and relation generation.
+The framework builds on multi-subject diffusion and introduces graph-based subject modeling, joint noise-subject reasoning, and cross-attention constraint mechanisms to improve subject consistency and relation generation.
 
 ## Requirements
 
