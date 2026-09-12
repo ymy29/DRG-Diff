@@ -1,4 +1,4 @@
-# DRG-Diff: Relation-Aware Multi-Subject Image Customization
+# DRG-Diff: Dual Relation Graph Awareness-Driven Multi-Subject Personalized Image Generation
 
 ## Introduction
 
