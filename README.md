@@ -64,7 +64,7 @@ Configure Accelerate before launching training. Multi-GPU training is recommende
 accelerate config
 ```
 
-Replace the model, dataset, and output paths in the training configuration, then run:
+Please replace the model, dataset, and output paths in the training configuration, then run:
 
 ```bash
 mkdir -p lora-weights
