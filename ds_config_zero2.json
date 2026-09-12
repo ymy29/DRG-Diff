@@ -1,0 +1,42 @@
+{
+  "train_batch_size": "auto",
+  "train_micro_batch_size_per_gpu": 1,
+  "gradient_accumulation_steps": 4,
+  "zero_optimization": {
+    "stage": 2,
+    "offload_optimizer": {
+      "device": "none",
+      "pin_memory": true
+    },
+    "offload_param": {
+      "device": "none",
+      "pin_memory": true
+    },
+    "overlap_comm": true,
+    "contiguous_gradients": true,
+    "reduce_bucket_size": 5e7,
+    "allgather_bucket_size": 5e7
+  },
+  "gradient_clipping": 1.0,
+  "steps_per_print": "inf",
+  "zero_allow_untested_optimizer": true,
+  "fp16": {
+    "enabled": "auto",
+    "loss_scale": 0,
+    "loss_scale_window": 1000,
+    "initial_scale_power": 16,
+    "hysteresis": 2,
+    "min_loss_scale": 1
+  },
+  "bf16": {
+    "enabled": "auto"
+  },
+  "communication_data_type": "fp16",
+  "disable_allgather": false,
+  "nccl_timeout": 7200,
+  "distributed_timeout": 7200,
+  "logging": {
+    "steps": 10,
+    "debug": false
+  }
+}

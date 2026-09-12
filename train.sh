@@ -1,0 +1,45 @@
+export PYTHONPATH=.
+export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512,garbage_collection_threshold:0.8
+export MODEL_NAME="../stabilityai/stable-diffusion-xl-base-1.0"
+export INSTANCE_DIR="../data/train_data" 
+export OUTPUT_DIR="../weight"
+export HF_ENDPOINT="https://hf-mirror.com"
+export WANDB_MODE=offline
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+export NCCL_SOCKET_IFNAME=eth0
+export GLOO_SOCKET_IFNAME=eth0
+export NCCL_P2P_DISABLE="1"
+export NCCL_IB_DISABLE="1"
+export NCCL_ASYNC_ERROR_HANDLING=0
+export NCCL_TIMEOUT=7200
+export NCCL_IB_TIMEOUT=7200
+export PYTORCH_NCCL_TIMEOUT=7200
+export TORCH_NCCL_TIMEOUT=7200
+export NCCL_COMM_TIMEOUT=7200
+export C10D_NCCL_TIMEOUT=7200
+export NCCL_WATCHDOG_TIMEOUT=0
+export NCCL_ENABLE_WATCHDOG=0
+export NCCL_WATCHDOG_THRESHOLD=0
+
+accelerate launch --dynamo_backend=no --deepspeed_config_file=ds_config_zero2.json train.py \
+  --pretrained_model_name_or_path=$MODEL_NAME \
+  --instance_data_dir=$INSTANCE_DIR \
+  --output_dir=$OUTPUT_DIR \
+  --mixed_precision="fp16" \
+  --resolution=1024 \
+  --train_batch_size=8 \
+  --gradient_accumulation_steps=4 \
+  --learning_rate=1e-4 \
+  --report_to="wandb" \
+  --lr_scheduler="constant" \
+  --lr_warmup_steps=0 \
+  --max_train_steps=5000 \
+  --checkpointing_steps=1000 \
+  --validation_epochs=1000 \
+  --seed="0" \
+  --dataloader_num_workers=0 \
+  --use_cross_attention \
+  --intra_attention_type="conv" \
+  --attn_align_weight=0.05 \
+  --rel_attn_weight=0.03 \
+  --clip_i_weight=0.00
